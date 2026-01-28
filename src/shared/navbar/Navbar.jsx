@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Link } from "react-router-dom";
-import Logo from "@/assets/images/Logo.png";
+import Logo from "@/assets/images/logo.png";
 
 const navItems = ["Home", "Services", "Works", "Testimonials"];
 
