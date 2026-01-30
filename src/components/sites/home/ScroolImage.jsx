@@ -23,7 +23,7 @@ const ScroolImage = () => {
 
   return (
     <section ref={targetRef} className="relative h-[300vh] bg-transparent">
-      <div className="sticky top-20 flex h-screen items-start overflow-hidden">
+      <div className="sticky top-20 flex  items-start overflow-hidden">
         <motion.div style={{ x }} className="flex gap-10 px-[10vw]">
           {images.map((image, index) => (
             <motion.div
