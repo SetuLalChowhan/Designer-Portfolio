@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
 @import "tailwindcss";
 
@@ -10,14 +10,14 @@
 
 @theme {
   /* font */
-  --font-geist: 'Geist', sans-serif;
+  --font-geist: "Geist", sans-serif;
   --font-instrument-sans: "Instrument Sans", sans-serif;
-  --font-playfair-display: 'Playfair Display', serif;
+  --font-playfair-display: "Playfair Display", serif;
 
   /* color */
 
-  --color-Primary: #E34400;
-  --color-Secondary: #2A2A2A;
+  --color-Primary: #e34400;
+  --color-Secondary: #2a2a2a;
   --color-bg-custom: linear-gradient(red, yellow);
 
   /* breakpoint */
@@ -199,7 +199,9 @@
   padding-top: 30px;
   padding-bottom: 30px;
 }
-
+.button {
+  cursor: pointer;
+}
 @media screen and (min-width: 650px) {
   .section-padding-x {
     padding-left: 20px;
