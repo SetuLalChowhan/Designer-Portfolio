@@ -12,23 +12,36 @@ import { useUserProfile } from "@/hooks/fetchUserProfile";
 const Home = () => {
   return (
     <div className="flex flex-col gap-20 pt-20 max-w-[1440px] mx-auto">
-      <div className=" flex flex-col gap-[150px]">
-        <Banner />
+      {/* Container spacing adjusted for responsiveness */}
+      <div className="flex flex-col gap-16 md:gap-24 lg:gap-[150px]">
+        {/* Added scroll-mt-32 to all sections to prevent navbar overlap on scroll */}
+        <section id="home" className="scroll-mt-32">
+          <Banner />
+        </section>
+
         <ScroolImage />
 
         <Brand />
 
         <About />
 
-        <ValuableService />
+        <section id="services" className="scroll-mt-32">
+          <ValuableService />
+        </section>
 
-        <Gallary />
+        <section id="works" className="scroll-mt-32">
+          <Gallary />
+        </section>
 
-        <Testimonial />
+        <section id="testimonials" className="scroll-mt-32">
+          <Testimonial />
+        </section>
 
         <FAQ />
 
-        <DesignWork />
+        <section id="contact" className="scroll-mt-32">
+          <DesignWork />
+        </section>
       </div>
     </div>
   );
