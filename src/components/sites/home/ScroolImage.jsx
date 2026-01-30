@@ -17,7 +17,7 @@ const ScroolImage = () => {
   // --- Desktop Scroll Logic ---
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start end", "end start"],
+    offset: ["start start", "end end"],
   });
 
   const xTranslation = useTransform(scrollYProgress, [0, 1], ["0%", "-65%"]);
