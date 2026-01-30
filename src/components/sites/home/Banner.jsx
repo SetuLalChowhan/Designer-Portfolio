@@ -35,7 +35,7 @@ const Banner = () => {
         {/* Social Proof */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 bg-white/50 backdrop-blur-sm p-3 rounded-2xl border border-white/20 shadow-sm"
+          className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 bg-white/50 backdrop-blur-sm p-3 rounded-2xl "
         >
           <img src={People} alt="People" className="h-10 w-auto sm:h-12" />
           <div className="flex flex-col items-center sm:items-start gap-1">

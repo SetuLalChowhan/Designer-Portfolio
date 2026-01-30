@@ -17,7 +17,6 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  // Hide navbar on scroll down
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
     if (latest > previous && latest > 150 && !mobileMenuOpen) {
@@ -35,17 +34,30 @@ const Navbar = () => {
     const element = document.getElementById(targetId);
 
     if (element && window.lenis) {
-      // Use Lenis scrollTo for perfect compatibility with smooth scroll
       window.lenis.scrollTo(element, {
-        offset: -80, // Your navbar height
+        offset: -80,
         duration: 1.5,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       });
     } else if (element) {
-      // Fallback if lenis isn't initialized yet
       const y = element.getBoundingClientRect().top + window.pageYOffset - 80;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
+  };
+
+  // Variants for Staggered Mobile Menu Animation
+  const menuVariants = {
+    closed: { opacity: 0, x: "100%" },
+    open: {
+      opacity: 1,
+      x: 0,
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    closed: { opacity: 0, y: 20 },
+    open: { opacity: 1, y: 0 },
   };
 
   return (
@@ -57,14 +69,14 @@ const Navbar = () => {
         }}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-6 md:px-10 py-4 w-full bg-white/80 backdrop-blur-md"
+        className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between section-padding-x max-w-[1440px] mx-auto py-4 w-full bg-white/80 backdrop-blur-md border-b border-neutral-100 md:border-none"
       >
         {/* Logo */}
-        <Link to="/" className="z-50">
+        <Link to="/" className="z-[70]">
           <img
             src={Logo}
             alt="Logo"
-            className="w-[120px] md:w-[175px] h-auto"
+            className="w-[110px] md:w-[175px] h-auto"
           />
         </Link>
 
@@ -90,9 +102,7 @@ const Navbar = () => {
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
-
               {item}
-
               {activeTab === item && (
                 <motion.span
                   layoutId="active-dot"
@@ -103,55 +113,68 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA Desktop */}
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => scrollToSection("Contact")}
-          className="hidden md:block bg-[#e85a2a] text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg"
+          className="hidden md:block bg-[#e85a2a] text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-[#e85a2a]/20"
         >
           Get in touch
         </motion.button>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Toggle Button */}
         <button
-          className="md:hidden z-50"
+          className="md:hidden z-[70] p-2 bg-gray-50 rounded-full border border-gray-100"
           onClick={() => setMobileMenuOpen((p) => !p)}
         >
-          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          {mobileMenuOpen ? (
+            <X size={24} className="text-gray-800" />
+          ) : (
+            <Menu size={24} className="text-gray-800" />
+          )}
         </button>
       </motion.nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ x: "100%", opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: "100%", opacity: 0 }}
-            transition={{ type: "spring", stiffness: 200, damping: 25 }}
-            className="fixed inset-0 z-[55] bg-white pt-32 flex flex-col items-center gap-8 md:hidden"
+            variants={menuVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            className="fixed inset-0 z-[55] bg-white flex flex-col p-8 md:hidden"
           >
-            {navItems.map((item) => (
-              <button
-                key={item}
-                onClick={() => scrollToSection(item)}
-                className={`text-4xl font-bold ${
-                  activeTab === item
-                    ? "text-[#e85a2a] scale-110"
-                    : "text-gray-900"
-                }`}
-              >
-                {item}
-              </button>
-            ))}
+            <div className="mt-24 flex flex-col gap-6">
+              <p className="text-xs font-bold text-gray-400 tracking-widest uppercase mb-2">
+                Navigation
+              </p>
+              {navItems.map((item) => (
+                <motion.button
+                  variants={itemVariants}
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className={`text-left text-3xl font-semibold tracking-tight ${
+                    activeTab === item ? "text-[#e85a2a]" : "text-gray-900"
+                  }`}
+                >
+                  {item}
+                </motion.button>
+              ))}
+            </div>
 
-            <button
-              onClick={() => scrollToSection("Contact")}
-              className="mt-10 bg-[#e85a2a] text-white px-10 py-5 rounded-full text-xl font-bold w-full max-w-xs"
-            >
-              Get in touch
-            </button>
+            <motion.div variants={itemVariants} className="mt-auto mb-10">
+              <button
+                onClick={() => scrollToSection("Contact")}
+                className="bg-[#e85a2a] text-white px-8 py-4 rounded-2xl text-lg font-bold w-full shadow-xl shadow-[#e85a2a]/30"
+              >
+                Get in touch
+              </button>
+              <p className="text-center text-gray-400 text-sm mt-6">
+                © 2026 Seeam Design
+              </p>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

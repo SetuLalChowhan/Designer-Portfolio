@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Marquee from "react-fast-marquee";
 
 // Note: Ensure these paths match your local folder structure
@@ -29,10 +29,10 @@ const Brand = () => {
 
         {/* Marquee Wrapper */}
         <div className="relative overflow-hidden">
-          <Marquee 
-            gradient={true} 
-            gradientColor="white" 
-            gradientWidth={100} 
+          <Marquee
+            gradient={true}
+            gradientColor="white"
+            gradientWidth={100}
             speed={40}
             pauseOnHover={true}
           >
@@ -42,7 +42,7 @@ const Brand = () => {
                   <img
                     src={brand.src}
                     alt={brand.alt}
-                    className="h-10 md:h-12 w-auto opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale brightness-0"
+                    className="h-10 md:h-12 w-auto transition-opacity duration-300"
                   />
                 </div>
               ))}
