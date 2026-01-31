@@ -42,7 +42,7 @@ const Brand = () => {
                   <img
                     src={brand.src}
                     alt={brand.alt}
-                    className="h-10 md:h-12 w-auto transition-opacity duration-300"
+                    className="h-8  w-auto transition-opacity duration-300"
                   />
                 </div>
               ))}

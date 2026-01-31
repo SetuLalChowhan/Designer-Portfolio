@@ -23,7 +23,9 @@ const Home = () => {
 
         <Brand />
 
-        <About />
+        <section id="about" className="scroll-mt-32">
+          <About />
+        </section>
 
         <section id="services" className="scroll-mt-32">
           <ValuableService />

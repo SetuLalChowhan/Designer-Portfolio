@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import Logo from "@/assets/images/logo.png";
 
-const navItems = ["Home", "Services", "Works", "Testimonials"];
+const navItems = ["Home", "About", "Services", "Works"];
 
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState("Home");
@@ -18,8 +18,7 @@ const Navbar = () => {
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious();
-    if (latest > previous && latest > 150 && !mobileMenuOpen) {
+    if (latest > 50 && !mobileMenuOpen) {
       setHidden(true);
     } else {
       setHidden(false);
@@ -62,23 +61,25 @@ const Navbar = () => {
 
   return (
     <>
-      <motion.nav
-        variants={{
-          visible: { y: 0 },
-          hidden: { y: "-100%" },
-        }}
-        animate={hidden ? "hidden" : "visible"}
-        transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between section-padding-x max-w-[1440px] mx-auto py-4 w-full bg-white/80 backdrop-blur-md border-b border-neutral-100 md:border-none"
-      >
+      <motion.nav className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between section-padding-x max-w-[1440px] mx-auto py-4 w-full border-b border-neutral-100 md:border-none">
         {/* Logo */}
-        <Link to="/" className="z-[70]">
-          <img
-            src={Logo}
-            alt="Logo"
-            className="w-[110px] md:w-[175px] h-auto"
-          />
-        </Link>
+        <motion.div
+          animate={{
+            opacity: hidden ? 0 : 1,
+            x: hidden ? -20 : 0,
+            pointerEvents: hidden ? "none" : "auto",
+          }}
+          transition={{ duration: 0.3 }}
+          className="z-[70]"
+        >
+          <Link to="/">
+            <img
+              src={Logo}
+              alt="Logo"
+              className="w-[110px] md:w-[175px] h-auto"
+            />
+          </Link>
+        </motion.div>
 
         {/* Desktop Nav */}
         <div
@@ -115,6 +116,12 @@ const Navbar = () => {
 
         {/* CTA Desktop */}
         <motion.button
+          animate={{
+            opacity: hidden ? 0 : 1,
+            x: hidden ? 20 : 0,
+            pointerEvents: hidden ? "none" : "auto",
+          }}
+          transition={{ duration: 0.3 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => scrollToSection("Contact")}

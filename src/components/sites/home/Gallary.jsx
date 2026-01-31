@@ -86,11 +86,11 @@ const Gallary = () => {
             className="group cursor-pointer"
           >
             {/* Image Container */}
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-gray-50 border border-gray-100 ">
+            <div className="relative overflow-hidden rounded-lg bg-gray-50 border border-gray-100 ">
               <img
                 src={project.src}
                 alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-1000 ease-[0.22, 1, 0.36, 1] group-hover:scale-105"
+                className="w-full h-full object-cover rounded-lg transition-transform duration-1000 ease-[0.22, 1, 0.36, 1] group-hover:scale-105"
               />
 
               {/* The "Open" circle overlay */}
@@ -119,7 +119,10 @@ const Gallary = () => {
             </div>
 
             {/* Project Info */}
-            <div style={{boxShadow:"0 4px 37.3px 0 rgba(0, 0, 0, 0.05)"}} className="flex justify-between items-center mt-6 p-5 rounded-[12px]">
+            <div
+              style={{ boxShadow: "0 4px 37.3px 0 rgba(0, 0, 0, 0.05)" }}
+              className="flex justify-between items-center mt-6 p-5 rounded-[12px]"
+            >
               <h3 className="text-2xl font-semibold text-[#1a1a1a] tracking-tight">
                 {project.title}
               </h3>

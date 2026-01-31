@@ -40,7 +40,7 @@ const ScroolImage = () => {
             {images.map((image, index) => (
               <motion.div
                 key={`desktop-${index}`}
-                className="group relative h-[500px] w-[750px] flex-shrink-0 overflow-hidden rounded-[40px] shadow-2xl"
+                className="group relative h-[500px] w-[750px] flex-shrink-0 overflow-hidden rounded-[40px] "
                 whileHover={{ scale: 0.98 }}
                 transition={{ duration: 0.4 }}
               >
