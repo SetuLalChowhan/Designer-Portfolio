@@ -61,13 +61,13 @@ const Navbar = () => {
 
   return (
     <>
-      <motion.nav className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between section-padding-x max-w-[1440px] mx-auto py-4 w-full border-b border-neutral-100 md:border-none">
+      <motion.nav className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between section-padding-x max-w-[1440px] mx-auto py-4 w-full md:bg-transparent md:backdrop-blur-none bg-white/30 backdrop-blur-md  md:border-none">
         {/* Logo */}
         <motion.div
           animate={{
-            opacity: hidden ? 0 : 1,
-            x: hidden ? -20 : 0,
-            pointerEvents: hidden ? "none" : "auto",
+            opacity: hidden && window.innerWidth >= 768 ? 0 : 1,
+            x: hidden && window.innerWidth >= 768 ? -20 : 0,
+            pointerEvents: hidden && window.innerWidth >= 768 ? "none" : "auto",
           }}
           transition={{ duration: 0.3 }}
           className="z-[70]"
