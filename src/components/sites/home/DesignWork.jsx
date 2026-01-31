@@ -112,7 +112,7 @@ const DesignWork = () => {
   };
 
   return (
-    <section id="works" className="section-padding-x font-geist py-20">
+    <section id="works" className="section-padding-x font-geist">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
